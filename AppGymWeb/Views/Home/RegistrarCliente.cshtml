@@ -1,0 +1,23 @@
+﻿@model ClienteFormularioPlanes
+
+<h2>Registrar Cliente</h2>
+
+<form asp-action="RegistrarCliente" method="post">
+    <label>Nombre:</label>
+    <input asp-for="Cliente.Nombre" />
+    <br />
+
+    <label>Apellido:</label>
+    <input asp-for="Cliente.Apellido" />
+    <br />
+
+    <label>Género:</label>
+    <input asp-for="Cliente.Genero" />
+    <br />
+
+    <label>Seleccionar Plan:</label>
+    <select asp-for="Cliente.PlanId" asp-items="Model.PlanesDisponibles"></select>
+
+    <br /><br />
+    <button type="submit">Registrar</button>
+</form>
