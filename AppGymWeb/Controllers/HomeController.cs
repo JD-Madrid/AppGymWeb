@@ -25,8 +25,16 @@ namespace AppGymWeb.Controllers
                 {
                     Text = p.Nombre + p.Actividades.Sum(a => a.precio),
                     Value = p.Id.ToString(),
-                }).ToList()
+                }).ToList(),
+
+                Generos = new List<SelectListItem>
+                {
+                    new SelectListItem {Text = "Masculino", Value = "Masculino"},
+                    new SelectListItem {Text = "Femenino", Value = "Femenino"}
+                }
             };
+
+           
 
             return View(vistaModelo);
         }
@@ -47,11 +55,10 @@ namespace AppGymWeb.Controllers
                 return View(model);
             }
 
-            // Guardar cliente
+            // Guardamos al cliente
             _context.Clientes.Add(model.Cliente);
             _context.SaveChanges();
 
-            // Redirigir al inicio (u otra página más adelante)
             return RedirectToAction("Index");
         }
     }

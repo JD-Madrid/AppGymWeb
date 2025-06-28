@@ -8,6 +8,8 @@ namespace AppGymWeb.Models
         public Cliente Cliente { get; set; } = new();
         public List<SelectListItem> PlanesDisponibles { get; set; } = new();
 
+        public List<SelectListItem> Generos {  get; set; } = new();
+
         public double precioPlanSeleccionado { get; set; }
     }
 }
