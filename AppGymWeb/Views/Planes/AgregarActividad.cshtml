@@ -1,0 +1,23 @@
+﻿@model ActividadFormulario
+
+<h2>Agregar Actividad</h2>
+
+<form asp-action="AgregarActividad" method="post">
+    <label>Nombre:</label>
+    <input asp-for="Actividad.Nombre" />
+    <br />
+
+    <label>Duración:</label>
+    <input asp-for="Actividad.duracion" type="number" />
+    <br />
+
+    <label>Precio:</label>
+    <input asp-for="Actividad.precio" type="number" />
+    <br />
+
+    <label>Seleccionar Plan:</label>
+    <select asp-for="Actividad.PlanId" asp-items="Model.PlanesDisponibles"></select>
+    <br /><br />
+
+    <button type="submit">Agregar</button>
+</form>
