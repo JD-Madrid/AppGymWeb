@@ -12,7 +12,7 @@
     <br />
 
     <label>Género:</label>
-    <input asp-for="Cliente.Genero" />
+    <select asp-for="Cliente.Genero" asp-items="Model.Generos"></select>
     <br />
 
     <label>Seleccionar Plan:</label>
