@@ -1,0 +1,13 @@
+﻿@model Plan
+
+<h2>Detalle del Plan: @Model.Nombre</h2>
+
+<p>Actividades:</p>
+<ul>
+    @foreach (var a in Model.Actividades)
+    {
+        <li>@a.Nombre - @a.duracion min - $@a.precio</li>
+    }
+</ul>
+
+<a asp-action="AgregarActividad" asp-route-planId="@Model.Id">Agregar Actividad</a>

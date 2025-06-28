@@ -23,7 +23,7 @@ namespace AppGymWeb.Controllers
             {
                 PlanesDisponibles = planes.Select(p => new SelectListItem
                 {
-                    Text = p.Nnombre + p.Actividades.Sum(a => a.precio),
+                    Text = p.Nombre + p.Actividades.Sum(a => a.precio),
                     Value = p.Id.ToString(),
                 }).ToList()
             };
@@ -40,7 +40,7 @@ namespace AppGymWeb.Controllers
                 var planes = _context.Planes.Include(p => p.Actividades).ToList();
                 model.PlanesDisponibles = planes.Select(p => new SelectListItem
                 {
-                    Text = $"{p.Nnombre} (${p.Actividades.Sum(a => a.precio):F2})",
+                    Text = $"{p.Nombre} (${p.Actividades.Sum(a => a.precio):F2})",
                     Value = p.Id.ToString()
                 }).ToList();
 

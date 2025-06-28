@@ -1,0 +1,10 @@
+﻿@model Plan
+
+<h2> Crear Plan</h2>
+
+<form asp-action="CrearPlan" method="post">
+    <label>Nombre del plan:</label>
+    <input asp-for="Nombre" />
+    <br />
+    <button type="submit">Guardar</button>
+</form>
