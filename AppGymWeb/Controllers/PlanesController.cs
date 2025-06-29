@@ -15,85 +15,70 @@ namespace AppGymWeb.Controllers
         [HttpGet]
         public IActionResult CrearPlan()
         {
-            return View(new Plan());
+
+            var actividades = _context.Actividades.ToList();
+
+            var modelo = new PlanFormulario
+            {
+                ActividadesDisponibles = actividades.Select(a => new SelectListItem
+                {
+                    Text = $"{a.Nombre} (${a.Precio})",
+                    Value = a.Id.ToString()
+                }).ToList(), 
+            };
+            return View(modelo);
         }
 
 
         [HttpPost]
-        public IActionResult CrearPlan(Plan plan)
+        public IActionResult CrearPlan(PlanFormulario modelo)
         {
 
             if (!ModelState.IsValid)
             {
-                return View(plan);
+                modelo.ActividadesDisponibles = _context.Actividades.Select(a => new SelectListItem
+                {
+                    Text = a.Nombre,
+                    Value = a.Id.ToString()
+                }).ToList();
+
+                return View(modelo);
             }
 
-            _context.Planes.Add(plan);
+            var actividadesSeleccionadas = _context.Actividades.Where(a => modelo.ActividadesSeleccionadas.Contains(a.Id)).ToList();
+
+            var nuevoPlan = new Plan
+            {
+                Nombre = modelo.Nombre,
+                Actividades = actividadesSeleccionadas
+            }; 
+
+            _context.Planes.Add(nuevoPlan);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult AgregarActividad()
+        {
+          return View();
+        }
+
+        [HttpPost]
+        public IActionResult AgregarActividad(Actividad actividad)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actividad);
+            }
+            _context.Actividades.Add(actividad);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
 
 
-        [HttpGet]
-        public IActionResult AgregarActividad()
-        {
-            var planes = _context.Planes.ToList();
 
-            var modelo = new ActividadFormulario
-            {
-                PlanesDisponibles = planes.Select(p => new SelectListItem
-                {
-                    Text = p.Nombre,
-                    Value = p.Id.ToString()
-                }).ToList()
-            };
-
-            return View(modelo);
-        }
-
-        [HttpPost]
-        public IActionResult AgregarActividad(ActividadFormulario modelo)
-        {
-
-            if (!ModelState.IsValid)
-            {
-                modelo.PlanesDisponibles = _context.Planes.Select(p => new SelectListItem
-                {
-                    Text = p.Nombre,
-                    Value = p.Id.ToString()
-                }).ToList();
-
-                return View(modelo);
-            }
-            bool existe = _context.Planes.Any(p => p.Id == modelo.Actividad.PlanId);
-            if (!existe)
-            {
-                ModelState.AddModelError("", "El plan seleccionado no existe.");
-                modelo.PlanesDisponibles = _context.Planes.Select(p => new SelectListItem
-                {
-                    Text = p.Nombre,
-                    Value = p.Id.ToString()
-                }).ToList();
-
-                return View(modelo);
-            }
-
-            _context.Actividades.Add(modelo.Actividad);
-            _context.SaveChanges();
-            return RedirectToAction("Detalle", new {id = modelo.Actividad.PlanId});
-        }
-
-        [HttpGet]
-        public IActionResult Detalle(int id)
-        {
-            var plan = _context.Planes
-           .Include(p => p.Actividades)
-           .FirstOrDefault(p => p.Id == id);
-
-            if (plan == null) return NotFound();
-
-            return View(plan);
-        }
     }
 }

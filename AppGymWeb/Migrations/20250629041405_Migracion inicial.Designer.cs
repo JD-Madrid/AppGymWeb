@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppGymWeb.Migrations
 {
     [DbContext(typeof(GymContext))]
-    [Migration("20250625204855_Migracion inicial")]
+    [Migration("20250629041405_Migracion inicial")]
     partial class Migracioninicial
     {
         /// <inheritdoc />
@@ -25,6 +25,21 @@ namespace AppGymWeb.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ActividadPlan", b =>
+                {
+                    b.Property<int>("ActividadesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlanesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ActividadesId", "PlanesId");
+
+                    b.HasIndex("PlanesId");
+
+                    b.ToTable("ActividadPlan");
+                });
+
             modelBuilder.Entity("AppGymWeb.Models.Actividad", b =>
                 {
                     b.Property<int>("Id")
@@ -33,22 +48,17 @@ namespace AppGymWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Duracion")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlanId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("duracion")
-                        .HasColumnType("float");
-
-                    b.Property<double>("precio")
+                    b.Property<double>("Precio")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PlanId");
 
                     b.ToTable("Actividades");
                 });
@@ -94,7 +104,7 @@ namespace AppGymWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Nnombre")
+                    b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -103,13 +113,19 @@ namespace AppGymWeb.Migrations
                     b.ToTable("Planes");
                 });
 
-            modelBuilder.Entity("AppGymWeb.Models.Actividad", b =>
+            modelBuilder.Entity("ActividadPlan", b =>
                 {
-                    b.HasOne("AppGymWeb.Models.Plan", "Plan")
-                        .WithMany("Actividades")
-                        .HasForeignKey("PlanId");
+                    b.HasOne("AppGymWeb.Models.Actividad", null)
+                        .WithMany()
+                        .HasForeignKey("ActividadesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Plan");
+                    b.HasOne("AppGymWeb.Models.Plan", null)
+                        .WithMany()
+                        .HasForeignKey("PlanesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AppGymWeb.Models.Cliente", b =>
@@ -119,11 +135,6 @@ namespace AppGymWeb.Migrations
                         .HasForeignKey("PlanId");
 
                     b.Navigation("Plan");
-                });
-
-            modelBuilder.Entity("AppGymWeb.Models.Plan", b =>
-                {
-                    b.Navigation("Actividades");
                 });
 #pragma warning restore 612, 618
         }

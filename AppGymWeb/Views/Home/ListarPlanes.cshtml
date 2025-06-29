@@ -1,0 +1,21 @@
+﻿@model List<Plan>
+
+<h2>Planes disponibles</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Cantidad de actividades</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var plan in Model)
+        {
+            <tr>
+                <td>@plan.Nombre</td>
+                <td>@(plan.Actividades?.Count ?? 0)</td>
+            </tr>
+        }
+    </tbody>
+</table>
