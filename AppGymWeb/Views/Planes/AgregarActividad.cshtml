@@ -1,23 +1,45 @@
-﻿@model ActividadFormulario
+﻿@* @model Actividad
 
 <h2>Agregar Actividad</h2>
 
 <form asp-action="AgregarActividad" method="post">
     <label>Nombre:</label>
-    <input asp-for="Actividad.Nombre" />
+    <input asp-for="Nombre" />
     <br />
 
     <label>Duración:</label>
-    <input asp-for="Actividad.duracion" type="number" />
+    <input asp-for="Duracion" type="number" />
     <br />
 
     <label>Precio:</label>
-    <input asp-for="Actividad.precio" type="number" />
+    <input asp-for="Precio" type="number" />
     <br />
 
-    <label>Seleccionar Plan:</label>
-    <select asp-for="Actividad.PlanId" asp-items="Model.PlanesDisponibles"></select>
-    <br /><br />
-
     <button type="submit">Agregar</button>
+</form> *@
+
+@model Actividad
+
+<h2>Agregar Actividad</h2>
+
+@* @* Mostramos errores de validación si existen *@
+@* @Html.ValidationSummary(true, "", new { @class = "text-danger" }) *@ 
+
+<form asp-action="AgregarActividad" method="post">
+    <label>Nombre:</label>
+    <input asp-for="Nombre" class="form-control" />
+    @* <span asp-validation-for="Nombre" class="text-danger"></span> *@
+    <br />
+
+    <label>Duración:</label>
+    <input asp-for="Duracion" type="number" class="form-control" />
+    @* <span asp-validation-for="Duracion" class="text-danger"></span> *@
+    <br />
+
+    <label>Precio:</label>
+    <input asp-for="Precio" type="number" class="form-control" />
+    @* <span asp-validation-for="Precio" class="text-danger"></span> *@
+    <br />
+
+    <button type="submit" class="btn btn-primary">Agregar</button>
 </form>

@@ -23,7 +23,7 @@ namespace AppGymWeb.Controllers
             {
                 PlanesDisponibles = planes.Select(p => new SelectListItem
                 {
-                    Text = p.Nombre + p.Actividades.Sum(a => a.precio),
+                    Text = p.Nombre + p.Actividades.Sum(a => a.Precio),
                     Value = p.Id.ToString(),
                 }).ToList(),
 
@@ -33,9 +33,6 @@ namespace AppGymWeb.Controllers
                     new SelectListItem {Text = "Femenino", Value = "Femenino"}
                 }
             };
-
-           
-
             return View(vistaModelo);
         }
 
@@ -48,7 +45,7 @@ namespace AppGymWeb.Controllers
                 var planes = _context.Planes.Include(p => p.Actividades).ToList();
                 model.PlanesDisponibles = planes.Select(p => new SelectListItem
                 {
-                    Text = $"{p.Nombre} (${p.Actividades.Sum(a => a.precio):F2})",
+                    Text = $"{p.Nombre} (${p.Actividades.Sum(a => a.Precio):F2})",
                     Value = p.Id.ToString()
                 }).ToList();
 
@@ -60,6 +57,13 @@ namespace AppGymWeb.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult ListarPlanes()
+        {
+            var planes = _context.Planes.Include(p => p.Actividades).ToList();
+
+            return View(planes);
         }
     }
 }
