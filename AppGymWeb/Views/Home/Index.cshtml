@@ -1,19 +1,149 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<a asp-controller="Home" asp-action="RegistrarCliente" class="btn btn-primary">
-    Anotarse
-</a>
+<!-- Carrusel -->
+<div class="carousel-container">
+    <div class="carousel-slides">
+        <!-- Slide 1: Anotarse -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-badge">NUEVO</div>
+                <h1 class="slide-title">ANOTARSE</h1>
+                <h2 class="slide-subtitle">REGISTRA TU MEMBRESÍA</h2>
+                <ul class="slide-features">
+                    <li>Registro rápido y sencillo</li>
+                    <li>Acceso a todos los planes disponibles</li>
+                    <li>Selección de género personalizada</li>
+                    <li>Asignación automática de planes</li>
+                    <li>Beneficios GymApp</li>
+                </ul>
+                <a href="@Url.Action("RegistrarCliente", "Home")" class="slide-cta">REGISTRARSE</a>
+            </div>
+            <div class="slide-extra-text">
+                El registro que mejor se adapta a vos,<br>
+                a tu entrenamiento y a tu bolsillo.
+            </div>
+        </div>
 
-<a asp-controller="Planes" asp-action="CrearPlan" class="btn btn-primary">
-    Agregar plan
-</a>
+        <!-- Slide 2: Crear Plan -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-badge">PERSONALIZADO</div>
+                <h1 class="slide-title">CREAR PLAN</h1>
+                <h2 class="slide-subtitle">DISEÑA TU RUTINA PERFECTA</h2>
+                <ul class="slide-features">
+                    <li>Planes personalizados únicos</li>
+                    <li>Selección múltiple de actividades</li>
+                    <li>Cálculo automático de precios</li>
+                    <li>Combinaciones ilimitadas</li>
+                    <li>Gestión profesional</li>
+                </ul>
+                <a href="@Url.Action("CrearPlan", "Planes")" class="slide-cta">CREAR PLAN</a>
+            </div>
+            <div class="slide-extra-text">
+                Crea el plan que mejor se ajuste<br>
+                a tus objetivos y necesidades.
+            </div>
+        </div>
 
-<a asp-controller="Planes" asp-action="AgregarActividad" class="btn btn-primary">
-    Agregar actividad
-</a>
+        <!-- Slide 3: Agregar Actividad -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-badge">INNOVADOR</div>
+                <h1 class="slide-title">NUEVA ACTIVIDAD</h1>
+                <h2 class="slide-subtitle">EXPANDE TU CATÁLOGO</h2>
+                <ul class="slide-features">
+                    <li>Nuevas actividades semanalmente</li>
+                    <li>Configuración de duración flexible</li>
+                    <li>Precios competitivos</li>
+                    <li>Validación automática de datos</li>
+                    <li>Integración inmediata</li>
+                </ul>
+                <a href="@Url.Action("AgregarActividad", "Planes")" class="slide-cta">AGREGAR ACTIVIDAD</a>
+            </div>
+            <div class="slide-extra-text">
+                Mantén tu gimnasio actualizado<br>
+                con las últimas tendencias fitness.
+            </div>
+        </div>
 
-<a asp-controller="Home" asp-action="ListarPlanes" class="btn btn-primary">
-    Listar planes
-</a>
+        <!-- Slide 4: Listar Planes -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="slide-badge">COMPLETO</div>
+                <h1 class="slide-title">VER PLANES</h1>
+                <h2 class="slide-subtitle">EXPLORA TODAS LAS OPCIONES</h2>
+                <ul class="slide-features">
+                    <li>Visualización completa de planes</li>
+                    <li>Detalles de cada actividad incluida</li>
+                    <li>Conteo automático de actividades</li>
+                    <li>Interfaz clara y organizada</li>
+                    <li>Navegación intuitiva</li>
+                </ul>
+                <a href="@Url.Action("ListarPlanes", "Home")" class="slide-cta">VER PLANES</a>
+            </div>
+            <div class="slide-extra-text">
+                Descubre todos los planes disponibles<br>
+                y encuentra el tuyo ideal.
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <button class="carousel-nav prev" onclick="previousSlide()">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="carousel-nav next" onclick="nextSlide()">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+        <div class="indicator active" onclick="goToSlide(0)"></div>
+        <div class="indicator" onclick="goToSlide(1)"></div>
+        <div class="indicator" onclick="goToSlide(2)"></div>
+        <div class="indicator" onclick="goToSlide(3)"></div>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const totalSlides = 4;
+    const slidesContainer = document.querySelector('.carousel-slides');
+    const indicators = document.querySelectorAll('.indicator');
+
+    function updateSlide() {
+        const translateX = -currentSlide * 25;
+        slidesContainer.style.transform = `translateX(${translateX}%)`;
+
+        // Update indicators
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentSlide);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlide();
+    }
+
+    function previousSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlide();
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        updateSlide();
+    }
+
+    // Auto-advance slides every 6 seconds
+    setInterval(nextSlide, 6000);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') previousSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+    });
+</script>
