@@ -1,23 +1,76 @@
 ﻿@model ClienteFormularioPlanes
+@{
+    ViewData["Title"] = "Registrar Cliente";
+}
 
-<h2>Registrar Cliente</h2>
+<div class="container-modern">
+    <div class="form-modern">
+        <h2><i class="fas fa-user-plus" style="color: #FFD700; margin-right: 15px;"></i>Registrar Cliente</h2>
 
-<form asp-action="RegistrarCliente" method="post">
-    <label>Nombre:</label>
-    <input asp-for="Cliente.Nombre" />
-    <br />
+        <form asp-action="RegistrarCliente" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="Cliente_Nombre">Nombre:</label>
+                    <input asp-for="Cliente.Nombre" class="form-control" placeholder="Ingresa tu nombre" />
+                    <span asp-validation-for="Cliente.Nombre" class="text-danger"></span>
+                </div>
 
-    <label>Apellido:</label>
-    <input asp-for="Cliente.Apellido" />
-    <br />
+                <div class="col-md-6">
+                    <label for="Cliente_Apellido">Apellido:</label>
+                    <input asp-for="Cliente.Apellido" class="form-control" placeholder="Ingresa tu apellido" />
+                    <span asp-validation-for="Cliente.Apellido" class="text-danger"></span>
+                </div>
+            </div>
 
-    <label>Género:</label>
-    <select asp-for="Cliente.Genero" asp-items="Model.Generos"></select>
-    <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="Cliente_Genero">Género:</label>
+                    <select asp-for="Cliente.Genero" asp-items="Model.Generos" class="form-control">
+                        <option value="">-- Selecciona tu género --</option>
+                    </select>
+                    <span asp-validation-for="Cliente.Genero" class="text-danger"></span>
+                </div>
 
-    <label>Seleccionar Plan:</label>
-    <select asp-for="Cliente.PlanId" asp-items="Model.PlanesDisponibles"></select>
+                <div class="col-md-6">
+                    <label for="Cliente_PlanId">Plan:</label>
+                    <select asp-for="Cliente.PlanId" asp-items="Model.PlanesDisponibles" class="form-control">
+                        <option value="">-- Selecciona un plan --</option>
+                    </select>
+                    <span asp-validation-for="Cliente.PlanId" class="text-danger"></span>
+                </div>
+            </div>
 
-    <br /><br />
-    <button type="submit">Registrar</button>
-</form>
+            <div class="text-center" style="margin-top: 30px;">
+                <button type="submit" class="btn-modern">
+                    <i class="fas fa-save" style="margin-right: 8px;"></i>
+                    Registrar Cliente
+                </button>
+                <a href="@Url.Action("Index", "Home")" class="btn-modern" style="background: #6c757d; margin-left: 15px;">
+                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                    Volver al inicio
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .form-modern .row {
+        margin-bottom: 15px;
+    }
+
+    .form-modern .col-md-6 {
+        padding: 0 10px;
+    }
+
+    .text-danger {
+        color: #dc3545 !important;
+        font-size: 0.875em;
+        margin-top: 5px;
+        display: block;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
