@@ -107,7 +107,7 @@ body {
 /* Estilos para formularios modernos */
 .form-modern {
     background: white;
-    padding: 40px;
+    padding: 80px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
@@ -235,32 +235,6 @@ body {
     }
 }
 
-/* Ocultar elementos de Bootstrap que no necesitamos */
-.navbar {
-    display: none;
-}
-
-</style >
-
-
-<style >
-/* Estilos específicos para el carrusel en la página principal */
-.carousel-container {
-    position: relative;
-    height: 80vh;
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    margin-bottom: 0;
-}
-
-.carousel-slides {
-    display: flex;
-    width: 400%;
-    height: 100%;
-    transition: transform 0.5s ease;
-}
-
 .slide {
     width: 25%;
     height: 100%;
@@ -331,7 +305,7 @@ body {
     }
 
         .slide-features li::before {
-            content: '?';
+            content: '+';
             background: #FFD700;
             color: black;
             width: 25px;
@@ -376,107 +350,50 @@ body {
     z-index: 2;
 }
 
-/* Navigation Arrows */
-.carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s;
+.carousel-item.slide-1 {
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23ff6b6b" width="1200" height="800"/><circle fill="%23ffffff" opacity="0.1" cx="200" cy="200" r="100"/><circle fill="%23ffffff" opacity="0.1" cx="800" cy="300" r="150"/><circle fill="%23ffffff" opacity="0.1" cx="1000" cy="600" r="80"/></svg>');
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-item.slide-2 {
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%234ecdc4" width="1200" height="800"/><circle fill="%23ffffff" opacity="0.1" cx="300" cy="400" r="120"/><circle fill="%23ffffff" opacity="0.1" cx="900" cy="200" r="90"/><circle fill="%23ffffff" opacity="0.1" cx="600" cy="600" r="110"/></svg>');
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-item.slide-3 {
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%2345b7d1" width="1200" height="800"/><circle fill="%23ffffff" opacity="0.1" cx="400" cy="300" r="140"/><circle fill="%23ffffff" opacity="0.1" cx="800" cy="500" r="100"/><circle fill="%23ffffff" opacity="0.1" cx="200" cy="600" r="70"/></svg>');
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-item.slide-4 {
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23667eea" width="1200" height="800"/><circle fill="%23ffffff" opacity="0.1" cx="500" cy="250" r="130"/><circle fill="%23ffffff" opacity="0.1" cx="150" cy="450" r="95"/><circle fill="%23ffffff" opacity="0.1" cx="950" cy="550" r="85"/></svg>');
+    background-size: cover;
+    background-position: center;
+}
+
+.custom-carousel {
+    width: 100%;
+    height: 100%;
+    min-height: calc(100vh - 80px - 56px);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    color: #333;
+    background-color: #f8f9fa;
 }
 
-    .carousel-nav:hover {
-        background: white;
-        transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
+.carousel-inner,
+.carousel-item {
+    width: 100%;
+    height: 100%;
+}
 
-    .carousel-nav.prev {
-        left: 30px;
-    }
-
-    .carousel-nav.next {
-        right: 30px;
-    }
-
-/* Indicators */
-.carousel-indicators {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+.slide {
+    width: 100%;
+    height: 100%;
     display: flex;
-    gap: 10px;
-    z-index: 10;
+    justify-content: center;
+    align-items: center;
 }
-
-.indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-    .indicator.active {
-        background: #FFD700;
-    }
-
-/* Background Images for each slide */
-.slide:nth-child(1) {
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23ff6b6b" width="1200" height="800"/><circle fill="%23ffffff" opacity="0.1" cx="200" cy="200" r="100"/><circle fill="%23ffffff" opacity="0.1" cx="800" cy="300" r="150"/><circle fill="%23ffffff" opacity="0.1" cx="1000" cy="600" r="80"/></svg>');
-}
-
-.slide:nth-child(2) {
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%234ecdc4" width="1200" height="800"/><circle fill="%23ffffff" opacity="0.1" cx="300" cy="400" r="120"/><circle fill="%23ffffff" opacity="0.1" cx="900" cy="200" r="90"/><circle fill="%23ffffff" opacity="0.1" cx="600" cy="600" r="110"/></svg>');
-}
-
-.slide:nth-child(3) {
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%2345b7d1" width="1200" height="800"/><circle fill="%23ffffff" opacity="0.1" cx="400" cy="300" r="140"/><circle fill="%23ffffff" opacity="0.1" cx="800" cy="500" r="100"/><circle fill="%23ffffff" opacity="0.1" cx="200" cy="600" r="70"/></svg>');
-}
-
-.slide:nth-child(4) {
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23667eea" width="1200" height="800"/><circle fill="%23ffffff" opacity="0.1" cx="500" cy="250" r="130"/><circle fill="%23ffffff" opacity="0.1" cx="150" cy="450" r="95"/><circle fill="%23ffffff" opacity="0.1" cx="950" cy="550" r="85"/></svg>');
-}
-
-@media (max-width: 768px) {
-    .slide-content {
-        padding: 0 30px;
-    }
-
-    .slide-title {
-        font-size: 2.5rem;
-    }
-
-    .slide-subtitle {
-        font-size: 1.3rem;
-    }
-
-    .slide-extra-text {
-        display: none;
-    }
-
-    .carousel-nav {
-        width: 50px;
-        height: 50px;
-        font-size: 16px;
-    }
-
-    .carousel-container {
-        height: 60vh;
-    }
-}
-
-</style >

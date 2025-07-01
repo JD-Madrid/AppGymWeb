@@ -14,7 +14,7 @@ namespace AppGymWeb.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-NM6V8VD\\SQLEXPRESS;Initial Catalog=AppGymWeb;" +
+                optionsBuilder.UseSqlServer("Data Source=LUCAS\\SQLEXPRESS;Initial Catalog=AppGymWeb;" +
                 " Integrated Security= true; TrustServerCertificate= true; Encrypt= true");
             }
             base.OnConfiguring(optionsBuilder);

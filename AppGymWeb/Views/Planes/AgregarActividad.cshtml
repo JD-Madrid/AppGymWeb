@@ -1,45 +1,30 @@
-﻿@* @model Actividad
+﻿@model Actividad
 
-<h2>Agregar Actividad</h2>
+<div class="container-modern mt-5">
+    <div class="form-modern">
 
-<form asp-action="AgregarActividad" method="post">
-    <label>Nombre:</label>
-    <input asp-for="Nombre" />
-    <br />
+        <h2 class="text-center mb-4">Agregar Actividad</h2>
 
-    <label>Duración:</label>
-    <input asp-for="Duracion" type="number" />
-    <br />
+        <form asp-action="AgregarActividad" method="post">
+            <div class="mb-3">
+                <label class="form-label">Nombre:</label>
+                <input asp-for="Nombre" class="form-control" />
+            </div>
 
-    <label>Precio:</label>
-    <input asp-for="Precio" type="number" />
-    <br />
+            <div class="mb-3">
+                <label class="form-label">Duración (minutos):</label>
+                <input asp-for="Duracion" type="number" class="form-control" />
+            </div>
 
-    <button type="submit">Agregar</button>
-</form> *@
+            <div class="mb-3">
+                <label class="form-label">Precio ($):</label>
+                <input asp-for="Precio" type="number" class="form-control" />
+            </div>
 
-@model Actividad
+            <div class="text-center">
+                <button type="submit" class="btn btn-warning"><b>Agregar</b></button>
+            </div>
+        </form>
 
-<h2>Agregar Actividad</h2>
-
-@* @* Mostramos errores de validación si existen *@
-@* @Html.ValidationSummary(true, "", new { @class = "text-danger" }) *@ 
-
-<form asp-action="AgregarActividad" method="post">
-    <label>Nombre:</label>
-    <input asp-for="Nombre" class="form-control" />
-    @* <span asp-validation-for="Nombre" class="text-danger"></span> *@
-    <br />
-
-    <label>Duración:</label>
-    <input asp-for="Duracion" type="number" class="form-control" />
-    @* <span asp-validation-for="Duracion" class="text-danger"></span> *@
-    <br />
-
-    <label>Precio:</label>
-    <input asp-for="Precio" type="number" class="form-control" />
-    @* <span asp-validation-for="Precio" class="text-danger"></span> *@
-    <br />
-
-    <button type="submit" class="btn btn-primary">Agregar</button>
-</form>
+    </div>
+</div>
