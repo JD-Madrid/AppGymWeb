@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     
 </head>
-<body>
-    <!-- Header moderno -->
+<body class="d-flex flex-column min-vh-100">
     <header class="header">
         <div class="nav-container">
             <a href="@Url.Action("Index", "Home")" class="logo">
@@ -21,23 +20,23 @@
                 <a href="@Url.Action("Index", "Home")">Inicio</a>
                 <a href="@Url.Action("ListarPlanes", "Home")">Planes</a>
                 <a href="@Url.Action("CrearPlan", "Planes")">Crear Plan</a>
+                <a href="@Url.Action("AgregarActividad", "Planes")">Crear Actividad</a>
                 <a href="@Url.Action("RegistrarCliente", "Home")" class="btn-asociate">Asociate</a>
             </nav>
         </div>
     </header>
 
-    <!-- Contenido principal -->
-    <div class="main-content">
+    <div class="main-content d-flex">
         @RenderBody()
     </div>
 
-    <!-- Footer moderno -->
-    <footer class="footer">
+    <footer class="footer mt-auto bg-dark text-white text-center py-3">
         <div class="container">
             &copy; 2025 - GymApp - Tu Gimnasio Digital -
-            <a href="#">Términos y Condiciones</a>
+            <a href="#" class="text-warning text-decoration-none">Términos y Condiciones</a>
         </div>
     </footer>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

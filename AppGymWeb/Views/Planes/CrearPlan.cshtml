@@ -1,15 +1,23 @@
 ﻿@model PlanFormulario
 
-<h2> Crear Plan</h2>
+<div class="container-modern mt-5">
+    <div class="form-modern">
 
-<form asp-action="CrearPlan" method="post">
-    <label>Nombre del plan:</label>
-    <input asp-for="Nombre" />
-    <br />
+        <h2 class="text-center mb-4">Crear Plan</h2>
 
-    <label>Seleccionar actividades:</label>
-    <select asp-for="ActividadesSeleccionadas" asp-items="Model.ActividadesDisponibles" multiple class="form-control"></select>
-    <br />
+        <form asp-action="CrearPlan" method="post">
+            <div class="mb-3">
+                <label for="nombrePlan" class="form-label">Nombre del plan</label>
+                <input asp-for="Nombre" type="text" class="form-control" id="nombrePlan" aria-describedby="nombrePlan">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Seleccionar actividades:</label>
+                <select asp-for="ActividadesSeleccionadas" asp-items="Model.ActividadesDisponibles" multiple class="form-control"></select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-warning"><b>Crear</b></button>
+            </div>
+        </form>
 
-    <button type="submit">Guardar</button>
-</form>
+    </div>
+</div>
