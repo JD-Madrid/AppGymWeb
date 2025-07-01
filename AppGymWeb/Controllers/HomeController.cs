@@ -65,5 +65,21 @@ namespace AppGymWeb.Controllers
 
             return View(planes);
         }
+       
+        [HttpGet]
+        public IActionResult DetallePlan(int id)
+        {
+            var plan = _context.Planes
+                .Include(p => p.Actividades)
+                .FirstOrDefault(p => p.Id == id);
+
+            if (plan == null)
+            {
+                return NotFound();
+            }
+
+            return View(plan); // Esto carga la vista DetallePlan.cshtml
+        }
+
     }
 }

@@ -1,0 +1,53 @@
+﻿@model AppGymWeb.Models.Plan
+
+@{
+    ViewData["Title"] = "Detalle del Plan";
+}
+
+<div class="container-modern mt-5">
+    <div class="form-modern shadow p-4 rounded" style="background-color: white;">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-list-alt text-warning me-2"></i>Detalle del Plan: <span class="text-dark">@Model.Nombre</span>
+        </h2>
+
+        @if (Model.Actividades != null && Model.Actividades.Any())
+        {
+            <table class="table table-striped table-bordered text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th><i class="fas fa-dumbbell me-1"></i>Actividad</th>
+                        <th><i class="fas fa-clock me-1"></i>Duración</th>
+                        <th><i class="fas fa-dollar-sign me-1"></i>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var actividad in Model.Actividades)
+                    {
+                        <tr>
+                            <td class="fw-bold text-capitalize">@actividad.Nombre</td>
+                            <td>@actividad.Duracion</td>
+                            <td>$@actividad.Precio</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="mt-4 text-center">
+                <h5 class="fw-bold text-success">
+                    Total: $@Model.Actividades.Sum(a => a.Precio)
+                </h5>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning text-center">Este plan no tiene actividades asignadas.</div>
+        }
+
+        <div class="mt-4 text-center">
+            <a href="@Url.Action("ListarPlanes", "Home")" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Volver a la lista
+            </a>
+        </div>
+    </div>
+</div>
+
