@@ -19,7 +19,7 @@ namespace AppGymWeb.Negocio_Servicio
 
         public void RegistrarCliente(Cliente c)
         {
-            //VALIDACION DEL CLIENTE CON TRY-CATCH Y ENVIAR UNA EXCEPCION SI ES INVALIDO
+            //Aqui hacemos las validaciones necesarias con un try-cath 
 
             ClientePersistencia.AgregarCliente(c);
         }
